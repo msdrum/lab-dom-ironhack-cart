@@ -2,12 +2,13 @@
 
 function updateSubtotal(product) {
   console.log('Calculating subtotal, yey!');
-  const price = parseInt(product.querySelector('.price span').textContent);
+  const price = parseFloat(product.querySelector('.price span').textContent);
   const quantity = parseInt(product.querySelector('.quantity input').value);
   const subTotalValue = price * quantity;
   const subTotal = product.querySelector('.subtotal span');
   subTotal.innerHTML = subTotalValue;
   return subTotalValue;
+  //funcao pra calcular o subtotal de um único produto, pq o queryselector pega apenas o primeiro elemento html respectivo daquele seletor
 }
 
 function calculateAll() {
@@ -16,9 +17,19 @@ function calculateAll() {
   // const singleProduct = document.querySelector('.product');
   // updateSubtotal(singleProduct);
   // end of test
-  // ITERATION 2
-  // ITERATION 3
-  //... your code goes here
+
+  // ITERATION 2 AND 3
+
+  const products = document.querySelectorAll('.product');
+  const total = document.querySelector('#total-value span'); //iteration 3
+  let totalValue = 0; //iteration 3
+  products.forEach((element) => {
+    updateSubtotal(element);
+    totalValue += updateSubtotal(element);
+  });
+
+  console.log(totalValue);
+  total.innerHTML = totalValue;
 }
 
 // ITERATION 4
@@ -40,6 +51,9 @@ window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
   //colocar o evento de click
   calculatePricesBtn.addEventListener('click', calculateAll);
+
+  const createProductBtn = document.getElementById('create');
+  createProductBtn.addEventListener('click', createProduct);
 
   //... your code goes here
 });
