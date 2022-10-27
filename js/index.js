@@ -32,15 +32,18 @@ function calculateAll() {
   total.innerHTML = totalValue;
 }
 
-// ITERATION 4
+// ITERATION 4 (Not Solved)
 
 function removeProduct(event) {
   const target = event.currentTarget;
+  const parentProduct = document.querySelector('.action');
+
   console.log('The target in remove is:', target);
   //... your code goes here
+  parentProduct.removeChild(target);
 }
 
-// ITERATION 5
+// ITERATION 5 (Noot Solved)
 
 function createProduct() {
   //... your code goes here
@@ -55,5 +58,10 @@ window.addEventListener('load', () => {
   const createProductBtn = document.getElementById('create');
   createProductBtn.addEventListener('click', createProduct);
 
-  //... your code goes here
+  //querying the document for all Remove buttons
+  const removeItem = document.querySelectorAll('.btn-remove');
+  //adding event listener click
+  removeItem.forEach((element) => {
+    element.addEventListener('click', removeProduct);
+  });
 });
